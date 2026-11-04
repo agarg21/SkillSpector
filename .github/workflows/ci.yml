@@ -92,6 +92,10 @@ jobs:
       - name: Check isolated dependency inspection before the full suite
         run: uv run pytest -q tests/unit/test_dependency_inspection.py
       - run: uv run make test-ci
+        env:
+          # xdist: 4 workers share the runner, so a few long static-analysis
+          # tests can exceed the 300 s per-artifact production budget.
+          SKILLSPECTOR_MAX_STATIC_ANALYSIS_SECONDS_PER_ARTIFACT: "900"
 
   test-opencode:
     name: OpenCode TypeScript Tests

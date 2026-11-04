@@ -107,7 +107,7 @@ test-cov:
 
 # Run tests with coverage for CI (Cobertura XML + terminal)
 test-ci:
-	pytest -m "not integration and not provider" --cov=src/skillspector --cov-report=term-missing --cov-report=xml tests/
+	pytest -n logical -m "not integration and not provider" --cov=src/skillspector --cov-report=term-missing --cov-report=xml tests/
 
 # Run linters (fast: ruff only)
 lint:
